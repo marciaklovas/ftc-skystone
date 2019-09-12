@@ -7,6 +7,7 @@
 //
 //  Revisions
 //      08-29-19    Marcia L.   Original
+//      09-12-19    Elijah W.   Added controls
 //
 */
 
@@ -21,13 +22,13 @@ public class SkystoneTeleOp extends LinearOpMode {
 
 
     // declare members
-    //private OurRobot Skystone;
+    private OurRobot Skystone;
     private ElapsedTime runtime;
 
     @Override
     public void runOpMode() {
         // 'this' used because opmode is needed to setup hardware
-        //Skystone = new OurRobot(this);
+        Skystone = new OurRobot(this);
         runtime = new ElapsedTime(); // not sure how to use this yet
 
         //Skystone.init();
@@ -45,29 +46,33 @@ public class SkystoneTeleOp extends LinearOpMode {
             //////////////// GAMEPAD 1 (A) ///////////////////
             //////////////// OMNI DRIVE //////////////////////
 
-            //Skystone.omniDrive.Drive();
+            Skystone.omniDrive.Drive();
 
             // A held down -> line finding in 4 directions
             if (gamepad1.a) {
-
-            }
-            if (gamepad2.right_bumper) {
-
+                if (gamepad1.dpad_up) {
+                    Skystone.omniDrive.bwdToLine();
+                }
+                if (gamepad1.dpad_down) {
+                    Skystone.omniDrive.fwdToLine();
+                }
+                if (gamepad1.dpad_left) {
+                    Skystone.omniDrive.lftToLine();
+                }
+                if (gamepad1.dpad_right) {
+                    Skystone.omniDrive.ritToLine();
+                }
             }
 
             // B held down -> turning in 2 directions
             if (gamepad1.b) {
-
+                if (gamepad1.dpad_left) {
+                    Skystone.omniDrive.turnLeft(90);
+                }
+                if (gamepad1.dpad_right) {
+                    Skystone.omniDrive.turnRight(90);
+                }
             }
-
-            //////////////// GAMEPAD 2 (B) ///////////////////
-            //////////////// ARM CONTROL //////////////////////
-
-            // Arm controls
-            if (gamepad2.a) {
-
-            }
-
 
         }
 
