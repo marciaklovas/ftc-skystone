@@ -22,19 +22,19 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class OurRobot {
 
     // list subsystems- public because they are used in TeleOp and Auto
-    public OmniDrive omniDrive;
+    public GearedDrive gearedDrive;
     //public Claw claw;
     //public Launcher launcher;
 
     public OurRobot(LinearOpMode opmode)
     {
-        omniDrive = new OmniDrive(opmode);
+        gearedDrive = new GearedDrive(opmode);
         //claw = new Claw(opmode);
         //launcher = new Launcher(opmode);
     }
 
     public void init() {
-        omniDrive.init();
+        gearedDrive.init();
         //claw.init();
     }
 

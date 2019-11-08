@@ -46,31 +46,31 @@ public class SkystoneTeleOp extends LinearOpMode {
             //////////////// GAMEPAD 1 (A) ///////////////////
             //////////////// OMNI DRIVE //////////////////////
 
-            Skystone.omniDrive.Drive();
+            Skystone.gearedDrive.Drive();
 
             // A held down -> line finding in 4 directions
             if (gamepad1.a) {
                 if (gamepad1.dpad_up) {
-                    Skystone.omniDrive.bwdToLine();
+                    Skystone.gearedDrive.bwdToLine();
                 }
                 if (gamepad1.dpad_down) {
-                    Skystone.omniDrive.fwdToLine();
+                    Skystone.gearedDrive.fwdToLine();
                 }
                 if (gamepad1.dpad_left) {
-                    Skystone.omniDrive.lftToLine();
+                    Skystone.gearedDrive.lftToLine();
                 }
                 if (gamepad1.dpad_right) {
-                    Skystone.omniDrive.ritToLine();
+                    Skystone.gearedDrive.ritToLine();
                 }
             }
 
             // B held down -> turning in 2 directions
             if (gamepad1.b) {
                 if (gamepad1.dpad_left) {
-                    Skystone.omniDrive.turnLeft(90);
+                    Skystone.gearedDrive.turnLeft(90);
                 }
                 if (gamepad1.dpad_right) {
-                    Skystone.omniDrive.turnRight(90);
+                    Skystone.gearedDrive.turnRight(90);
                 }
             }
 
