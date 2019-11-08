@@ -7,18 +7,14 @@
 //  	constructor
 //  	init()
 //  	Drive()
-//
-//      Not Implemented:
-//
 //  	fwdToLine()
 //  	bwdToLine()
-//  	lftToLine()
-//  	ritToLine()
 //  	turnLeft()
 //  	turnRight()
 //
 //  Revisions
 //  	11-08-19	Elijah W. and Kai P.   Original
+//      11-08-19    Elijah W. and Kai P.   Added fwdToLine, bwdToLine, turnLeft, turnRight
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -120,28 +116,6 @@ public class GearedDrive {
         wheel3.setPower(0);
     }
 
-    public void lftToLine() {
-        wheel1.setPower(-0.4);
-        wheel0.setPower(-0.4);
-        while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
-            opMode.telemetry.addData("Light Level", sensorColor.alpha());
-            opMode.telemetry.update();
-        }
-        wheel1.setPower(0);
-        wheel0.setPower(0);
-    }
-
-    public void ritToLine() {
-        wheel1.setPower(0.4);
-        wheel0.setPower(0.4);
-        while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
-            opMode.telemetry.addData("Light Level", sensorColor.alpha());
-            opMode.telemetry.update();
-        }
-        wheel1.setPower(0);
-        wheel0.setPower(0);
-    }
-
     public void turnRight(int angle) {
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
@@ -154,10 +128,9 @@ public class GearedDrive {
 
         while (angles.firstAngle > targetAngle) {
 
-            wheel0.setPower(.2);
-            wheel1.setPower(-.2);
-            wheel2.setPower(-.2);
-            wheel3.setPower(.2);
+
+            wheel2.setPower(-.4);
+            wheel3.setPower(.4);
 
             opMode.telemetry.addData("degs ", angles.firstAngle);
             opMode.telemetry.addData("target ", targetAngle);
@@ -165,8 +138,7 @@ public class GearedDrive {
 
             angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         }
-        wheel0.setPower(0);
-        wheel1.setPower(0);
+
         wheel2.setPower(0);
         wheel3.setPower(0);
 
@@ -187,10 +159,8 @@ public class GearedDrive {
 
         while (angles.firstAngle < targetAngle) {
 
-            wheel0.setPower(-.2);
-            wheel1.setPower(.2);
-            wheel2.setPower(.2);
-            wheel3.setPower(-.2);
+            wheel2.setPower(.4);
+            wheel3.setPower(-.4);
 
             opMode.telemetry.addData("degs ", angles.firstAngle);
             opMode.telemetry.addData("target ", targetAngle);
@@ -199,8 +169,6 @@ public class GearedDrive {
             angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         }
 
-        wheel0.setPower(0);
-        wheel1.setPower(0);
         wheel2.setPower(0);
         wheel3.setPower(0);
 
@@ -210,13 +178,11 @@ public class GearedDrive {
     }
 
     public void Drive() {
-        p0 = opMode.gamepad1.left_stick_x + opMode.gamepad1.right_stick_x;
-        p1 = opMode.gamepad1.left_stick_x - opMode.gamepad1.right_stick_x;
-        p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.right_stick_x;
-        p3 = opMode.gamepad2.left_stick_y + opMode.gamepad1.right_stick_x;
 
-        //wheel0.setPower(p0 / 3);
-        //wheel1.setPower(p1 / 3);
+        p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.left_stick_x;
+        p3 = opMode.gamepad1.left_stick_y + opMode.gamepad1.left_stick_x;
+
+
         wheel2.setPower(p2 / 3);
         wheel3.setPower(p3 / 3);
     }

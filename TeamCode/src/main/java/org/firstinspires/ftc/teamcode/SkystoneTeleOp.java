@@ -56,12 +56,7 @@ public class SkystoneTeleOp extends LinearOpMode {
                 if (gamepad1.dpad_down) {
                     Skystone.gearedDrive.fwdToLine();
                 }
-                if (gamepad1.dpad_left) {
-                    Skystone.gearedDrive.lftToLine();
-                }
-                if (gamepad1.dpad_right) {
-                    Skystone.gearedDrive.ritToLine();
-                }
+
             }
 
             // B held down -> turning in 2 directions
