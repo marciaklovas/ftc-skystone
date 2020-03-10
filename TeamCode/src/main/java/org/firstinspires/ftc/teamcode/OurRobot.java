@@ -9,34 +9,37 @@
 //
 //  Revisions
 //  	09-12-19	Elijah W.   Original
-//
+//      03-10-20    Elijah W.   Updated to make subsystems private
 */
-
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
 
 public class OurRobot {
 
-    // list subsystems- public because they are used in TeleOp and Auto
-    public GearedDrive gearedDrive;
-    //public Claw claw;
-    //public Launcher launcher;
+    private GearedDrive gearedDrive;
+    private LinkageDrive linkageDrive;
+    //private Claw claw;
+    //private Launcher launcher;
 
     public OurRobot(LinearOpMode opmode)
     {
-        gearedDrive = new GearedDrive(opmode);
+        linkageDrive = new LinkageDrive(opmode);
         //claw = new Claw(opmode);
         //launcher = new Launcher(opmode);
     }
 
     public void init() {
-        gearedDrive.init();
+        linkageDrive.init();
         //claw.init();
     }
 
+    public void drive() {
+        linkageDrive.drive();
+    }
 
+    public void spinWheel1() {
+        linkageDrive.wheel1();
+    }
 }

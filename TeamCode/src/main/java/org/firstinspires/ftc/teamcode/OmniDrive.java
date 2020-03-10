@@ -207,7 +207,7 @@ public class OmniDrive {
 
     }
 
-    public void Drive () {
+    public void drive () {
         p0 = opMode.gamepad1.left_stick_x + opMode.gamepad1.right_stick_x;
         p1 = opMode.gamepad1.left_stick_x - opMode.gamepad1.right_stick_x;
         p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.right_stick_x;

@@ -1,23 +1,35 @@
 /*
 //  FTC FROGS (#14335) TEAM CODE
 //
-//  Class GearedDrive
+//  Class LinkageDrive
 //
 //  Methods:
 //  	constructor
 //  	init()
 //  	Drive()
-//  	fwdToLine()
-//  	bwdToLine()
-//  	turnLeft()
-//  	turnRight()
+//  	fwdToLine() - not implemented
+//  	bwdToLine() - not implemented
+//  	turnLeft() - not implemented
+//  	turnRight() - not implemented
 //
 //  Revisions
-//  	11-08-19	Elijah W. and Kai P.   Original
-//      11-08-19    Elijah W. and Kai P.   Added fwdToLine, bwdToLine, turnLeft, turnRight
+//  	02-04-20	Elijah W. and Kai P.   Original
+//      02-15-20    Elijah W. and Kai P.   Modified to work with 4 motors
+//      03-10-20    Elijah W.              Commented out unused/untested methods
 */
 
 package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -30,7 +42,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import com.qualcomm.robotcore.util.Range;
 
-public class GearedDrive {
+public class LinkageDrive {
 
     // declare constants
     final static double WHEEL_CIRCUM = 12.2;   // in inches
@@ -66,7 +78,7 @@ public class GearedDrive {
     private Acceleration gravity;
 
     // constructor method
-    public GearedDrive(LinearOpMode opmode) {
+    public LinkageDrive(LinearOpMode opmode) {
         // hardwaremap
         this.opMode = opmode; // 'this' used for clarity
         wheel0 = opMode.hardwareMap.get(DcMotor.class, "m0");
@@ -95,6 +107,7 @@ public class GearedDrive {
     }
 
     public void fwdToLine() {
+        /*
         wheel2.setPower(0.4);
         wheel3.setPower(0.4);
         while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
@@ -102,10 +115,11 @@ public class GearedDrive {
             opMode.telemetry.update();
         }
         wheel2.setPower(0);
-        wheel3.setPower(0);
+        wheel3.setPower(0); */
     }
 
     public void bwdToLine() {
+        /*
         wheel2.setPower(-0.4);
         wheel3.setPower(-0.4);
         while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
@@ -113,10 +127,11 @@ public class GearedDrive {
             opMode.telemetry.update();
         }
         wheel2.setPower(0);
-        wheel3.setPower(0);
+        wheel3.setPower(0); */
     }
 
     public void turnRight(int angle) {
+        /*
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         // counterclockwise is positive direction (in degrees)
@@ -145,9 +160,12 @@ public class GearedDrive {
         opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
         opMode.telemetry.update();
 
+         */
+
     }
 
     public void turnLeft(int angle) {
+        /*
         angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         // counterclockwise is positive direction (in degrees)
@@ -174,7 +192,7 @@ public class GearedDrive {
 
         opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
         opMode.telemetry.update();
-
+        */
     }
 
     public void drive() {
@@ -182,7 +200,14 @@ public class GearedDrive {
         p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.left_stick_x;
         p3 = opMode.gamepad1.left_stick_y + opMode.gamepad1.left_stick_x;
 
+
         wheel2.setPower(p2 / 3);
+        wheel1.setPower(p2 / 3);
         wheel3.setPower(p3 / 3);
+        wheel0.setPower(p3 / 3);
+    }
+
+    public void wheel1() {
+        wheel3.setPower(50);
     }
 }

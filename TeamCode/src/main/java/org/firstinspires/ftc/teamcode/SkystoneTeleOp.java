@@ -8,7 +8,7 @@
 //  Revisions
 //      08-29-19    Marcia L.   Original
 //      09-12-19    Elijah W.   Added controls
-//
+//      03-10-20    Elijah W.   Updated calls to Skystone.Drive
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -20,7 +20,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @TeleOp(name="SkystoneTeleOp", group="Linear Opmode")
 public class SkystoneTeleOp extends LinearOpMode {
 
-
     // declare members
     private OurRobot Skystone;
     private ElapsedTime runtime;
@@ -31,7 +30,7 @@ public class SkystoneTeleOp extends LinearOpMode {
         Skystone = new OurRobot(this);
         runtime = new ElapsedTime(); // not sure how to use this yet
 
-        //Skystone.init();
+        Skystone.init();
 
         sleep(2000);
 
@@ -44,35 +43,14 @@ public class SkystoneTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
 
             //////////////// GAMEPAD 1 (A) ///////////////////
-            //////////////// OMNI DRIVE //////////////////////
 
-            Skystone.gearedDrive.Drive();
+            Skystone.drive();
 
-            // A held down -> line finding in 4 directions
             if (gamepad1.a) {
-                if (gamepad1.dpad_up) {
-                    Skystone.gearedDrive.bwdToLine();
-                }
-                if (gamepad1.dpad_down) {
-                    Skystone.gearedDrive.fwdToLine();
-                }
-
+                Skystone.spinWheel1();
             }
-
-            // B held down -> turning in 2 directions
-            if (gamepad1.b) {
-                if (gamepad1.dpad_left) {
-                    Skystone.gearedDrive.turnLeft(90);
-                }
-                if (gamepad1.dpad_right) {
-                    Skystone.gearedDrive.turnRight(90);
-                }
-            }
-
         }
-
     }
-
 }
 
 
