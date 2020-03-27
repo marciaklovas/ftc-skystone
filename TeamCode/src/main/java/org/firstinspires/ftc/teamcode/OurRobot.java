@@ -39,7 +39,19 @@ public class OurRobot {
         linkageDrive.drive();
     }
 
+    public void spinWheel0() {
+        linkageDrive.wheel0();
+    }
+
     public void spinWheel1() {
         linkageDrive.wheel1();
+    }
+
+    public void spinWheel2() {
+        linkageDrive.wheel2();
+    }
+
+    public void spinWheel3() {
+        linkageDrive.wheel3();
     }
 }

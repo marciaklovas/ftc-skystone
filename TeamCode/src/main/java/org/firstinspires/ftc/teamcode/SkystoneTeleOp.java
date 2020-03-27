@@ -47,8 +47,21 @@ public class SkystoneTeleOp extends LinearOpMode {
             Skystone.drive();
 
             if (gamepad1.a) {
+                Skystone.spinWheel0();
+            }
+
+            if (gamepad1.b) {
                 Skystone.spinWheel1();
             }
+
+            if (gamepad1.x) {
+                Skystone.spinWheel2();
+            }
+
+            if (gamepad1.y) {
+                Skystone.spinWheel3();
+            }
+
         }
     }
 }

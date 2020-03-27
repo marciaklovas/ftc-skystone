@@ -200,14 +200,26 @@ public class LinkageDrive {
         p2 = opMode.gamepad1.left_stick_y - opMode.gamepad1.left_stick_x;
         p3 = opMode.gamepad1.left_stick_y + opMode.gamepad1.left_stick_x;
 
-
         wheel2.setPower(p2 / 3);
         wheel1.setPower(p2 / 3);
+        
         wheel3.setPower(p3 / 3);
         wheel0.setPower(p3 / 3);
     }
 
+    public void wheel0() {
+        wheel0.setPower(0.5);
+    }
+
     public void wheel1() {
-        wheel3.setPower(50);
+        wheel1.setPower(0.5);
+    }
+
+    public void wheel2() {
+        wheel2.setPower(0.5);
+    }
+
+    public void wheel3() {
+        wheel3.setPower(0.5);
     }
 }
