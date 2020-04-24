@@ -20,38 +20,39 @@ public class OurRobot {
 
     private GearedDrive gearedDrive;
     private LinkageDrive linkageDrive;
+    private StarWarsDrive starwarsDrive;
     //private Claw claw;
     //private Launcher launcher;
 
     public OurRobot(LinearOpMode opmode)
     {
-        linkageDrive = new LinkageDrive(opmode);
+        starwarsDrive = new StarWarsDrive(opmode);
         //claw = new Claw(opmode);
         //launcher = new Launcher(opmode);
     }
 
     public void init() {
-        linkageDrive.init();
+        starwarsDrive.init();
         //claw.init();
     }
 
     public void drive() {
-        linkageDrive.drive();
+        starwarsDrive.drive();
     }
 
     public void spinWheel0() {
-        linkageDrive.wheel0();
+        starwarsDrive.wheel0();
     }
 
     public void spinWheel1() {
-        linkageDrive.wheel1();
+        starwarsDrive.wheel1();
     }
 
     public void spinWheel2() {
-        linkageDrive.wheel2();
+        starwarsDrive.wheel2();
     }
 
     public void spinWheel3() {
-        linkageDrive.wheel3();
+        starwarsDrive.wheel3();
     }
 }
