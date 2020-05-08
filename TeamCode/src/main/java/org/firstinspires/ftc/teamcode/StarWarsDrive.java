@@ -18,6 +18,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -41,6 +42,7 @@ public class StarWarsDrive {
     private ColorSensor sensorColor;
     private BNO055IMU imu;
     private LinearOpMode opMode;
+    private Servo headTurner;
 
     private double leftPower;
     private double rightPower;
@@ -65,6 +67,7 @@ public class StarWarsDrive {
         wheel1 = opMode.hardwareMap.get(DcMotor.class, "m1");
         wheel2 = opMode.hardwareMap.get(DcMotor.class, "m2");
         wheel3 = opMode.hardwareMap.get(DcMotor.class, "m3");
+        headTurner = opMode.hardwareMap.get(Servo.class, "headTurner");
         sensorColor = opMode.hardwareMap.get(ColorSensor.class, "sensor_color_distance");
         imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
 
@@ -202,4 +205,10 @@ public class StarWarsDrive {
     public void wheel3() {
         wheel3.setPower(0.5);
     }
+
+    public void left() {headTurner.setPosition(0);}
+
+    public void right() {headTurner.setPosition(1);}
+
+    public void center() {}
 }
