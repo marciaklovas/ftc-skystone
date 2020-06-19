@@ -56,6 +56,10 @@ public class OurRobot {
         starwarsDrive.wheel3();
     }
 
+    public void head() {
+        starwarsDrive.head();
+    }
+
     public void left() {starwarsDrive.left();}
 
     public void right() {starwarsDrive.right();}

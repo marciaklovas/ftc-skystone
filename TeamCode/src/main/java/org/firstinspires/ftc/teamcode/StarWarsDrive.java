@@ -56,6 +56,8 @@ public class StarWarsDrive {
     private double p2;
     private double p3;
 
+    private double position;
+
     // State used for updating telemetry
     //private Orientation angles;
     //private Acceleration gravity;
@@ -190,6 +192,12 @@ public class StarWarsDrive {
         wheel3.setPower(p3 / 3);
         wheel0.setPower(p3 / 3);
     }
+    public void head() {
+
+      position = ((opMode.gamepad1.right_trigger - opMode.gamepad1.left_trigger)/2) + 0.5;
+      headTurner.setPosition(position);
+    }
+
 
     public void wheel0() {
         wheel0.setPower(0.5);
