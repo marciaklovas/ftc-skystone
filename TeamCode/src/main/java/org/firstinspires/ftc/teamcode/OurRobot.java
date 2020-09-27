@@ -63,4 +63,6 @@ public class OurRobot {
     public void left() {starwarsDrive.left();}
 
     public void right() {starwarsDrive.right();}
+
+    public void playSound() {starwarsDrive.playSound();}
 }

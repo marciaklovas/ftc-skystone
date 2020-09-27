@@ -11,7 +11,9 @@
 //
 //  Revisions
 //  	04-24-20	Elijah W. and Kai P.   Original
-//      6/19/20     Kai P                  Testing out Android Studio, added head() method
+//      06-19-20    Kai P                  Testing out Android Studio, added head() method
+//      09-06-20    Elijah W. and Coach M. Added ability to trigger Star Wars sound on RC phone
+//                                         Trying 2 different methods in playSound()
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -21,6 +23,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+//import com.qualcomm.ftccommon.SoundPlayer;
+
+import android.media.ToneGenerator;
+import android.media.MediaPlayer;
+import android.media.AudioManager;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -59,6 +66,14 @@ public class StarWarsDrive {
 
     private double position;
 
+    // Two ways to play sounds on RC phone: ToneGenerator or MediaPlayer
+    private ToneGenerator tone;
+
+    private MediaPlayer mp;
+    //private ToggleUtility mediaPlay;
+    private final String mediaPath;
+    private final String mediaFile;
+
     // State used for updating telemetry
     //private Orientation angles;
     //private Acceleration gravity;
@@ -75,6 +90,13 @@ public class StarWarsDrive {
         sensorColor = opMode.hardwareMap.get(ColorSensor.class, "sensor_color_distance");
         imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
 
+        tone = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
+
+        mp = new MediaPlayer();
+        //mediaPlay = new ToggleUtility();
+        mediaPath = "/res/raw/";
+        mediaFile = "ss_laser_burst";
+
         // IMU parameters
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
@@ -90,6 +112,31 @@ public class StarWarsDrive {
 
     public void init() {
         // Set initial conditions for the motors
+
+    }
+
+    public void playSound() {
+
+        tone.startTone(ToneGenerator.TONE_CDMA_KEYPAD_VOLUME_KEY_LITE);
+
+        // OR use this: ?
+
+        /*
+        if(!mp.isPlaying())
+            mp.start();
+
+        else {
+            mp.stop();
+
+            try {
+                mp = new MediaPlayer();
+                mp.setDataSource(mediaPath + mediaFile);
+                mp.prepare();
+            } catch (Exception e) {
+                opMode.telemetry.addData("Sound Error", "Oh no :(");
+                opMode.telemetry.update();
+            }
+        }*/
 
     }
 

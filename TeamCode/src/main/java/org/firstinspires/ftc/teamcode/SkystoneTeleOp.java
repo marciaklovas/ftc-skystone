@@ -68,6 +68,10 @@ public class SkystoneTeleOp extends LinearOpMode {
 
             if (gamepad1.dpad_right) {Skystone.right();}
 
+            if (gamepad1.left_bumper) {
+                Skystone.playSound();
+            }
+
         }
     }
 }
