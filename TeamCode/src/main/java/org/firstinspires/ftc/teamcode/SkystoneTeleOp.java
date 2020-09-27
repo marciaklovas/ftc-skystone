@@ -9,6 +9,7 @@
 //      08-29-19    Marcia L.   Original
 //      09-12-19    Elijah W.   Added controls
 //      03-10-20    Elijah W.   Updated calls to Skystone.Drive
+//      09-27-20    Elijah W.   Added calls to playSound and playBeep
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -70,6 +71,9 @@ public class SkystoneTeleOp extends LinearOpMode {
 
             if (gamepad1.left_bumper) {
                 Skystone.playSound();
+            }
+            if (gamepad1.right_bumper) {
+                Skystone.playBeep();
             }
 
         }

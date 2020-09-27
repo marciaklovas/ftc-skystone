@@ -10,6 +10,7 @@
 //  Revisions
 //  	09-12-19	Elijah W.   Original
 //      03-10-20    Elijah W.   Updated to make subsystems private
+//      09-27-20    Elijah W.   Cleaned up code
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -21,19 +22,14 @@ public class OurRobot {
     private GearedDrive gearedDrive;
     private LinkageDrive linkageDrive;
     private StarWarsDrive starwarsDrive;
-    //private Claw claw;
-    //private Launcher launcher;
 
     public OurRobot(LinearOpMode opmode)
     {
         starwarsDrive = new StarWarsDrive(opmode);
-        //claw = new Claw(opmode);
-        //launcher = new Launcher(opmode);
     }
 
     public void init() {
         starwarsDrive.init();
-        //claw.init();
     }
 
     public void drive() {
@@ -65,4 +61,5 @@ public class OurRobot {
     public void right() {starwarsDrive.right();}
 
     public void playSound() {starwarsDrive.playSound();}
+    public void playBeep() {starwarsDrive.playBeep();}
 }

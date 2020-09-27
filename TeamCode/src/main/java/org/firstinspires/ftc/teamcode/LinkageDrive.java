@@ -7,15 +7,13 @@
 //  	constructor
 //  	init()
 //  	Drive()
-//  	fwdToLine() - not implemented
-//  	bwdToLine() - not implemented
-//  	turnLeft() - not implemented
-//  	turnRight() - not implemented
+//      wheel0, wheel1, wheel2, wheel3
 //
 //  Revisions
 //  	02-04-20	Elijah W. and Kai P.   Original
 //      02-15-20    Elijah W. and Kai P.   Modified to work with 4 motors
 //      03-10-20    Elijah W.              Commented out unused/untested methods
+//      09-27-20    Elijah W.              Cleaned up code
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -26,21 +24,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-
-import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import com.qualcomm.robotcore.util.Range;
 
 public class LinkageDrive {
 
@@ -98,101 +82,11 @@ public class LinkageDrive {
 
         wheel0.setDirection(DcMotor.Direction.REVERSE);
         wheel3.setDirection(DcMotor.Direction.REVERSE);
-
     }
 
     public void init() {
         // Set initial conditions for the motors
 
-    }
-
-    public void fwdToLine() {
-        /*
-        wheel2.setPower(0.4);
-        wheel3.setPower(0.4);
-        while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
-            opMode.telemetry.addData("Light Level", sensorColor.alpha());
-            opMode.telemetry.update();
-        }
-        wheel2.setPower(0);
-        wheel3.setPower(0); */
-    }
-
-    public void bwdToLine() {
-        /*
-        wheel2.setPower(-0.4);
-        wheel3.setPower(-0.4);
-        while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
-            opMode.telemetry.addData("Light Level", sensorColor.alpha());
-            opMode.telemetry.update();
-        }
-        wheel2.setPower(0);
-        wheel3.setPower(0); */
-    }
-
-    public void turnRight(int angle) {
-        /*
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-        // counterclockwise is positive direction (in degrees)
-        targetAngle = angles.firstAngle - angle;
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.addData("Target Angle ", targetAngle);
-        opMode.telemetry.update();
-
-        while (angles.firstAngle > targetAngle) {
-
-
-            wheel2.setPower(-.4);
-            wheel3.setPower(.4);
-
-            opMode.telemetry.addData("degs ", angles.firstAngle);
-            opMode.telemetry.addData("target ", targetAngle);
-            opMode.telemetry.update();
-
-            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        }
-
-        wheel2.setPower(0);
-        wheel3.setPower(0);
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.update();
-
-         */
-
-    }
-
-    public void turnLeft(int angle) {
-        /*
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-        // counterclockwise is positive direction (in degrees)
-        targetAngle = angles.firstAngle + angle;
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.addData("Target Angle ", targetAngle);
-        opMode.telemetry.update();
-
-        while (angles.firstAngle < targetAngle) {
-
-            wheel2.setPower(.4);
-            wheel3.setPower(-.4);
-
-            opMode.telemetry.addData("degs ", angles.firstAngle);
-            opMode.telemetry.addData("target ", targetAngle);
-            opMode.telemetry.update();
-
-            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        }
-
-        wheel2.setPower(0);
-        wheel3.setPower(0);
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.update();
-        */
     }
 
     public void drive() {

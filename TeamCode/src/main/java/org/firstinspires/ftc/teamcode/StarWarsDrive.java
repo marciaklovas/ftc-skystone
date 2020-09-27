@@ -8,12 +8,16 @@
 //  	init()
 //  	drive()
 //      head()
+//      left(), right()
+//      wheel0, wheel1, wheel2, wheel3
+//      playSound()
+//      playBeep()
 //
 //  Revisions
 //  	04-24-20	Elijah W. and Kai P.   Original
 //      06-19-20    Kai P                  Testing out Android Studio, added head() method
 //      09-06-20    Elijah W. and Coach M. Added ability to trigger Star Wars sound on RC phone
-//                                         Trying 2 different methods in playSound()
+//                                         Cleaned up code
 */
 
 package org.firstinspires.ftc.teamcode;
@@ -23,14 +27,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
-//import com.qualcomm.ftccommon.SoundPlayer;
 
 import android.media.ToneGenerator;
-import android.media.MediaPlayer;
 import android.media.AudioManager;
 
-import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 public class StarWarsDrive {
 
@@ -69,15 +69,6 @@ public class StarWarsDrive {
     // Two ways to play sounds on RC phone: ToneGenerator or MediaPlayer
     private ToneGenerator tone;
 
-    private MediaPlayer mp;
-    //private ToggleUtility mediaPlay;
-    private final String mediaPath;
-    private final String mediaFile;
-
-    // State used for updating telemetry
-    //private Orientation angles;
-    //private Acceleration gravity;
-
     // constructor method
     public StarWarsDrive(LinearOpMode opmode) {
         // hardwaremap
@@ -91,11 +82,6 @@ public class StarWarsDrive {
         imu = opmode.hardwareMap.get(BNO055IMU.class, "imu");
 
         tone = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 100);
-
-        mp = new MediaPlayer();
-        //mediaPlay = new ToggleUtility();
-        mediaPath = "/res/raw/";
-        mediaFile = "ss_laser_burst";
 
         // IMU parameters
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -115,118 +101,16 @@ public class StarWarsDrive {
 
     }
 
+    public void playBeep() {
+
+        tone.startTone(ToneGenerator.TONE_PROP_BEEP);
+
+    }
+
     public void playSound() {
 
         tone.startTone(ToneGenerator.TONE_CDMA_KEYPAD_VOLUME_KEY_LITE);
 
-        // OR use this: ?
-
-        /*
-        if(!mp.isPlaying())
-            mp.start();
-
-        else {
-            mp.stop();
-
-            try {
-                mp = new MediaPlayer();
-                mp.setDataSource(mediaPath + mediaFile);
-                mp.prepare();
-            } catch (Exception e) {
-                opMode.telemetry.addData("Sound Error", "Oh no :(");
-                opMode.telemetry.update();
-            }
-        }*/
-
-    }
-
-    public void fwdToLine() {
-        /*
-        wheel2.setPower(0.4);
-        wheel3.setPower(0.4);
-        while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
-            opMode.telemetry.addData("Light Level", sensorColor.alpha());
-            opMode.telemetry.update();
-        }
-        wheel2.setPower(0);
-        wheel3.setPower(0); */
-    }
-
-    public void bwdToLine() {
-        /*
-        wheel2.setPower(-0.4);
-        wheel3.setPower(-0.4);
-        while (opMode.opModeIsActive() && (sensorColor.alpha() < WHITE_THRESHOLD) && (!opMode.gamepad1.y)) {
-            opMode.telemetry.addData("Light Level", sensorColor.alpha());
-            opMode.telemetry.update();
-        }
-        wheel2.setPower(0);
-        wheel3.setPower(0); */
-    }
-
-    public void turnRight(int angle) {
-        /*
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-        // counterclockwise is positive direction (in degrees)
-        targetAngle = angles.firstAngle - angle;
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.addData("Target Angle ", targetAngle);
-        opMode.telemetry.update();
-
-        while (angles.firstAngle > targetAngle) {
-
-
-            wheel2.setPower(-.4);
-            wheel3.setPower(.4);
-
-            opMode.telemetry.addData("degs ", angles.firstAngle);
-            opMode.telemetry.addData("target ", targetAngle);
-            opMode.telemetry.update();
-
-            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        }
-
-        wheel2.setPower(0);
-        wheel3.setPower(0);
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.update();
-
-         */
-
-    }
-
-    public void turnLeft(int angle) {
-        /*
-        angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-
-        // counterclockwise is positive direction (in degrees)
-        targetAngle = angles.firstAngle + angle;
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.addData("Target Angle ", targetAngle);
-        opMode.telemetry.update();
-
-        while (angles.firstAngle < targetAngle) {
-
-            wheel2.setPower(.4);
-            wheel3.setPower(-.4);
-
-            opMode.telemetry.addData("degs ", angles.firstAngle);
-            opMode.telemetry.addData("target ", targetAngle);
-            opMode.telemetry.update();
-
-            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        }
-
-        wheel2.setPower(0);
-        wheel3.setPower(0);
-
-        opMode.telemetry.addData("Current Angle ", (angles.firstAngle));
-        opMode.telemetry.update();
-        */
     }
 
     public void drive() {
@@ -245,7 +129,6 @@ public class StarWarsDrive {
       position = ((opMode.gamepad1.right_trigger - opMode.gamepad1.left_trigger)/2) + 0.5;
       headTurner.setPosition(position);
     }
-
 
     public void wheel0() {
         wheel0.setPower(0.5);
@@ -267,5 +150,4 @@ public class StarWarsDrive {
 
     public void right() {headTurner.setPosition(1);}
 
-    public void center() {}
 }

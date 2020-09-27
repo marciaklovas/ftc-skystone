@@ -15,6 +15,7 @@
 //  Revisions
 //  	11-08-19	Elijah W. and Kai P.   Original
 //      11-08-19    Elijah W. and Kai P.   Added fwdToLine, bwdToLine, turnLeft, turnRight
+//      09-27-20    Elijah W.              Cleaned up code
 */
 
 package org.firstinspires.ftc.teamcode;
